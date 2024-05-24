@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<li class="active"><a href="{{ url_for('quiz.main') }}"><i class="fa fa-list fa-fw"></i>&nbsp; Поиск </a></li>
+<ul>
+{% for course in courses %}
+    <li>
+        <a href="{{ url_for('quiz.course', course=course.code) }}">
+            <i class="fa fa-book fa-fw"></i>&nbsp; {{ course.code }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
+

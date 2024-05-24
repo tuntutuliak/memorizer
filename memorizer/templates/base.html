@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Меморайзер{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Alegreya+SC:700|Roboto:500,700,400' rel='stylesheet' type='text/css'>
+    <meta name="theme-color" content="#203949">
+</head>
+<body>
+<nav class="top">
+    <div class="container">
+        <ul>
+            <li class="menu">
+                <i class="fa fa-fw fa-navicon"></i>
+                <span>Главная</span>
+            </li>
+            <li class="logo">
+                <a href="{{ url_for('quiz.main') }}">Меморайзер</a>
+            </li>
+        </ul>
+        <ul class="right">
+            <li class="user">
+            {% if user.registered %}
+                <i class="fa fa-fw fa-user"></i>
+                {{ user.username }}
+            {% else %}
+                <a href="{{ url_for('quiz.login') }}">
+                    <i class="fa fa-sign-in fa-fw"></i>
+                    Войти
+                </a>
+            {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>
+<nav class="sidebar closed">
+    <ul>
+        {% if user.registered %}
+        <li><span><i class="fa fa-user fa-fw"></i>&nbsp; {{ user.username }}</span></li>
+        <li><a href="{{ url_for('quiz.logout') }}"><i class="fa fa-sign-out fa-fw"></i>&nbsp; Выход</a></li>
+        {% else %}
+        <li><a href="{{ url_for('quiz.register') }}"><i class="fa fa-user-plus fa-fw"></i>&nbsp; Регистрация</a></li>
+        <li><a href="{{ url_for('quiz.login') }}"><i class="fa fa-sign-in fa-fw"></i>&nbsp; Вход</a></li>
+        {% endif %}
+    </ul>
+    <ul>
+    {% block menu %}{% endblock %}
+    </ul>
+    <ul>
+        <li><a href="{{ url_for('quiz.tips') }}"><i class="fa fa-info-circle fa-fw"></i>&nbsp; Подсказки</a></li>
+        <li><a href="https://github.com/tuntutuliak/memorizer"><i class="fa fa-github fa-fw"></i>&nbsp; Код</a></li>
+        <li><a href="mailto:nabei@bitcom.info"><i class="fa fa-envelope fa-fw"></i>&nbsp; Контакт</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <ul class="alerts">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for level, message in messages %}
+          <li class="alert {{ level }}">{{ message }}</li>
+        {% endfor %}
+    {% endwith %}
+    </ul>
+{% block content %}{% endblock %}
+</div>
+{% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
+</body>
+</html>

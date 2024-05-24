@@ -1,0 +1,8 @@
+.collapsed {
+    display: none;
+}
+
+.collapsing {
+    transition: height ease 0.4s;
+    overflow-y: hidden;
+}

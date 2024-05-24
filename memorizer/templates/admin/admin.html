@@ -1,0 +1,23 @@
+{% from "admin/_formhelpers.html" import render_form %}
+{% extends "base.html" %}
+
+{% block menu %}
+<li><a href="{{ url_for('admin.index') }}"><i class="fa fa-list fa-fw"></i>&nbsp; Администраток</a></li>
+<ul>
+    <li><a href="{{ url_for('admin.courses') }}"><i class="fa fa-list fa-fw"></i>&nbsp; Предмет</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<h1 class="admin-header">Панель администратора</h1>
+
+<a href="{{ url_for('admin.courses') }}">Список предметов</a>
+{% endblock %}
+
+{% block js %}
+{{ super() }}
+    <script>
+    window.isAdmin = {{ 'true' if user.admin else 'false' }};
+    </script>
+
+{% endblock %}

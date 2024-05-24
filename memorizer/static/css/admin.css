@@ -1,0 +1,105 @@
+.admin-list {
+    list-style: decimal;
+    list-style-position: inside;
+    padding: 0;
+}
+
+.admin-list li {
+    margin: 0;
+    padding-left: 1.0rem;
+    position: relative;
+    border: 0.1rem solid #E6E6E6;
+    border-top: none;
+}
+
+/* Add top border on first element */
+.admin-list li:nth-child(1) {
+    border-top: 0.1rem solid #E6E6E6;
+}
+
+.admin-list li:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+
+.admin-list a {
+    display: inline-block;
+    padding: 1.0rem;
+}
+
+.admin-list a:hover {
+    text-decoration: underline;
+
+}
+
+.admin-list a.link {
+    width: 80%;
+    height: 100%;
+}
+
+.admin-list a.delete {
+    position: absolute;
+    right: 0;
+}
+
+/* Register link on admin login */
+.admin-register {
+      font-size: 1.8rem;
+      color: #203949;
+      font-weight: bold;
+      margin: 1.0rem 0;
+      float: left;
+}
+
+.admin-header {
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+}
+
+.admin-button {
+    color: #464646;
+    font-size: 1.9rem;
+    display: block;
+}
+
+.admin-button:hover {
+    text-decoration: underline;
+}
+
+
+/* Breadcrumbs */
+
+ul.admin-bread {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-bread li {
+    display: inline-block;
+    margin: 2px;
+    font-size: 1.8rem;
+    color: #292929;
+}
+
+.admin-bread a {
+    color: #203949;
+    font-weight: bold;
+}
+
+.admin-bread li:not(:last-child):after {
+    content: "/";
+    margin-left: 2px;
+    color: #737373;
+}
+
+.admin-bread a:hover {
+    color: #2D4B5F;
+}
+
+/* Transactions */
+#transactions table {
+    border-spacing: 0;
+}
+#transactions td, #transactions th {
+    padding: 5px;
+    border-bottom: 1px solid #B1B1B1;
+}

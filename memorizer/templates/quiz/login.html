@@ -1,0 +1,10 @@
+{% from "admin/_formhelpers.html" import render_form %}
+{% extends "admin/admin.html" %}
+
+{% block content %}
+<h1>Войдите</h1>
+
+{{ render_form(form, submit_text="Войдите") }}
+
+<a class="admin-register" href="{{ url_for('quiz.register') }}">Или зарегистрируйтесь</a>
+{% endblock %}

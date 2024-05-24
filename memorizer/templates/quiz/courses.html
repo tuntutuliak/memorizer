@@ -1,0 +1,38 @@
+{% extends "quiz/quiz.html" %}
+
+{% block content %}
+<h1>Поиск</h1>
+<input type="text" id="search_courses" placeholder="Предмет..." autofocus>
+<ul class="courses">
+{% for course in courses %}
+    <li data-text="{{ course.code }} {{ course.name }}">
+        <a href="{{ url_for('quiz.course', course=course.code) }}">
+            <div class="code">{{ course.code }}</div>
+            <div class="count">{{ course.question_count }} <small>вопрос</small></div>
+            <div class="name">{{ course.name }}</div>
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('search_courses');
+        const coursesList = document.querySelectorAll('ul.courses li');
+
+        searchInput.addEventListener('input', function() {
+            const searchQuery = this.value.toLowerCase();
+            coursesList.forEach(function(course) {
+                const courseText = course.getAttribute('data-text').toLowerCase();
+                if (courseText.includes(searchQuery)) {
+                    course.style.display = '';
+                } else {
+                    course.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
